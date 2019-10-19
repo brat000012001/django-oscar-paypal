@@ -58,6 +58,10 @@ Tests
 Changelog
 ---------
 
+1.0.1 (private)
+-----------------------------------
+* Add support for Django 2.2.5
+
 1.0.0 (released May 30th, 2018)
 -----------------------------------
 * Add support for Oscar 1.6 and Django 2.
