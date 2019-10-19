@@ -24,3 +24,6 @@ integration.py
 
 # Sandbox
 sandbox/public/media
+
+.vscode/
+env/
