@@ -22,5 +22,3 @@ class ExpressDashboardConfig(OscarConfig):
     def get_url_decorator(self, url_name):
         return staff_member_required
 
-
-# application = ExpressDashboardConfig()

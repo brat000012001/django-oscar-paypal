@@ -217,15 +217,44 @@ INSTALLED_APPS = [
     # External apps
     'django_extensions',
     'debug_toolbar',
+
+    'oscar',
+    'oscar.apps.analytics',
+    'oscar.apps.checkout',
+    'oscar.apps.address',
+    'oscar.apps.shipping',
+    'oscar.apps.catalogue',
+    'oscar.apps.catalogue.reviews',
+    'oscar.apps.partner',
+    'oscar.apps.basket',
+    'oscar.apps.payment',
+    'oscar.apps.offer',
+    'oscar.apps.order',
+    'oscar.apps.customer',
+    'oscar.apps.search',
+    'oscar.apps.voucher',
+    'oscar.apps.wishlists',
+    'oscar.apps.dashboard',
+    'oscar.apps.dashboard.reports',
+    'oscar.apps.dashboard.users',
+    'oscar.apps.dashboard.orders',
+    'oscar.apps.dashboard.catalogue',
+    'oscar.apps.dashboard.offers',
+    'oscar.apps.dashboard.partners',
+    'oscar.apps.dashboard.pages',
+    'oscar.apps.dashboard.ranges',
+    'oscar.apps.dashboard.reviews',
+    'oscar.apps.dashboard.vouchers',
+    'oscar.apps.dashboard.communications',
+    'oscar.apps.dashboard.shipping',
+
     # Apps from oscar
-    'paypal',
+    #'paypal',
+    'paypal.express.dashboard',
+    'paypal.payflow.dashboard'
     'widget_tweaks',
 ]
 
-from oscar import get_core_apps
-INSTALLED_APPS = INSTALLED_APPS + get_core_apps([
-    'apps.shipping',
-    'apps.checkout'])
 
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
