@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
-from oscar.core.application import Application
+from oscar.core.application import OscarDashboardConfig
 
 from paypal.express.dashboard import views
 
 
-class ExpressDashboardApplication(Application):
+class ExpressDashboardConfig(OscarDashboadConfig):
     name = None
     list_view = views.TransactionListView
     detail_view = views.TransactionDetailView
@@ -23,4 +23,4 @@ class ExpressDashboardApplication(Application):
         return staff_member_required
 
 
-application = ExpressDashboardApplication()
+application = ExpressDashboardConfig()
