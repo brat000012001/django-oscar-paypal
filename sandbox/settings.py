@@ -131,7 +131,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'oscar.apps.search.context_processors.search_form',
-                'oscar.apps.promotions.context_processors.promotions',
+                #'oscar.apps.promotions.context_processors.promotions',
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.core.context_processors.metadata',
             ],
@@ -248,11 +248,10 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.communications',
     'oscar.apps.dashboard.shipping',
 
+    'widget_tweaks',
+    'sorl.thumbnail',
     # Apps from oscar
     'paypal',
-    #'paypal.express.dashboard',
-    #'paypal.payflow.dashboard'
-    'widget_tweaks',
 ]
 
 
