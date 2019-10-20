@@ -249,9 +249,9 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.shipping',
 
     # Apps from oscar
-    #'paypal',
-    'paypal.express.dashboard',
-    'paypal.payflow.dashboard'
+    'paypal',
+    #'paypal.express.dashboard',
+    #'paypal.payflow.dashboard'
     'widget_tweaks',
 ]
 
