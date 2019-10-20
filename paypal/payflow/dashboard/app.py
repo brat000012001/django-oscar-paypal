@@ -23,4 +23,4 @@ class PayFlowDashboardConfig(OscarConfig):
         return staff_member_required
 
 
-application = PayFlowDashboardConfig()
+# application = PayFlowDashboardConfig()

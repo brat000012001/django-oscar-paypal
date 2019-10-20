@@ -23,4 +23,4 @@ class ExpressDashboardConfig(OscarConfig):
         return staff_member_required
 
 
-application = ExpressDashboardConfig()
+# application = ExpressDashboardConfig()
