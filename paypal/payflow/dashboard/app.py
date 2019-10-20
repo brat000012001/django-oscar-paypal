@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from django.contrib.admin.views.decorators import staff_member_required
-from oscar.core.application import OscarDashboardConfig
+from oscar.core.application import OscarConfig
 
 from . import views
 
 
-class PayFlowDashboardConfig(OscarDashboardConfig):
+class PayFlowDashboardConfig(OscarConfig):
     name = None
     list_view = views.TransactionListView
     detail_view = views.TransactionDetailView
