@@ -110,15 +110,11 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'urls'
 
-from oscar import OSCAR_MAIN_TEMPLATE_DIR
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            location('templates'),
-            os.path.join(OSCAR_MAIN_TEMPLATE_DIR, 'templates'),
-            OSCAR_MAIN_TEMPLATE_DIR,
+            location('templates')
         ],
         'OPTIONS': {
             'loaders': [
