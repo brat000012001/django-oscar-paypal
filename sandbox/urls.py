@@ -4,10 +4,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
+from django.apps import apps
 
-from apps.app import application
-from paypal.payflow.dashboard.app import application as payflow
-from paypal.express.dashboard.app import application as express_dashboard
+#from apps.app import application
+#from paypal.payflow.dashboard.app import application as payflow
+#from paypal.express.dashboard.app import application as express_dashboard
 
 admin.autodiscover()
 
@@ -18,11 +19,11 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     # PayPal Express integration...
     url(r'^checkout/paypal/', include('paypal.express.urls')),
-    # Dashboard views for Payflow Pro
-    url(r'^dashboard/paypal/payflow/', payflow.urls),
-    # Dashboard views for Express
-    url(r'^dashboard/paypal/express/', express_dashboard.urls),
-    url(r'', application.urls),
+    ## Dashboard views for Payflow Pro
+    url(r'^dashboard/paypal/payflow/', apps.get_app_config('paypal_payflow_dashboard').urls),
+    ## Dashboard views for Express
+    url(r'^dashboard/paypal/express/', apps.get_app_config('paypal_express_dashboard').urls),
+    url(r'^', include(apps.get_app_config('oscar').urls[0]))
 )
 
 if settings.DEBUG:

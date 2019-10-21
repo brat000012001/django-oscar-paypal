@@ -131,7 +131,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'oscar.apps.search.context_processors.search_form',
-                #'oscar.apps.promotions.context_processors.promotions',
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.core.context_processors.metadata',
             ],
@@ -180,6 +179,11 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': False,
+        },
+        'oscar': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
         'oscar.checkout': {
             'handlers': ['console'],
@@ -250,10 +254,18 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'sorl.thumbnail',
-    # Apps from oscar
-    'paypal',
 ]
 
+INSTALLED_APPS = [
+    # Apps from oscar
+    'paypal',
+    'apps.apps.PayPalConfig',
+    'paypal.payflow.dashboard.apps.PayFlowDashboardConfig',
+    'paypal.express.dashboard.apps.ExpressDashboardConfig',
+    #'apps.checkout.apps.CheckoutConfig'
+] + INSTALLED_APPS
+
+INSTALLED_APPS[INSTALLED_APPS.index('oscar.apps.checkout')] = 'apps.checkout.apps.CheckoutConfig'
 
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
@@ -278,11 +290,11 @@ OSCAR_DASHBOARD_NAVIGATION.append(
         'children': [
             {
                 'label': _('PayFlow transactions'),
-                'url_name': 'paypal-payflow-list',
+                'url_name': 'paypal_payflow_dashboard:paypal-payflow-list',
             },
             {
                 'label': _('Express transactions'),
-                'url_name': 'paypal-express-list',
+                'url_name': 'paypal_express_dashboard:paypal-express-list',
             },
         ]
     })
