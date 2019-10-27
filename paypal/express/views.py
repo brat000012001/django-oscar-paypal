@@ -12,7 +12,7 @@ from django.urls import reverse
 from django.utils import six
 from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import RedirectView, View
+from django.views.generic import RedirectView as GenericRedirectView, View
 from oscar.apps.payment.exceptions import UnableToTakePayment
 from oscar.apps.shipping.methods import FixedPrice, NoShippingRequired
 from oscar.core.exceptions import ModuleNotFoundError
@@ -45,7 +45,7 @@ except ModuleNotFoundError:
 logger = logging.getLogger('paypal.express')
 
 
-class RedirectView(CheckoutSessionMixin, RedirectView):
+class RedirectView(CheckoutSessionMixin, GenericRedirectView):
     """
     Initiate the transaction with Paypal and redirect the user
     to PayPal's Express Checkout to perform the transaction.
@@ -126,10 +126,13 @@ class RedirectView(CheckoutSessionMixin, RedirectView):
                 user=user, basket=basket, request=self.request)
             params['shipping_methods'] = shipping_methods
 
-        if settings.DEBUG:
-            # Determine the localserver's hostname to use when
-            # in testing mode
-            params['host'] = self.request.META['HTTP_HOST']
+        # Returns the originating host of the request using information from the HTTP_X_FORWARDED_HOST 
+        # (if USE_X_FORWARDED_HOST is enabled) and HTTP_HOST headers, in that order. 
+        # If they don’t provide a value, the method uses a combination of SERVER_NAME and SERVER_PORT 
+        # as detailed in PEP 3333.
+        #
+        # Example: "127.0.0.1:8000"
+        params['host'] = self.request.get_host()
 
         if user.is_authenticated:
             params['user'] = user
